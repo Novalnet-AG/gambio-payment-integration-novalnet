@@ -1,0 +1,8 @@
+.form-group:nth-child(0) {
+  display: none;}
+
+span #notification_buyer_wrap{
+
+word-break : break-all;
+
+}
