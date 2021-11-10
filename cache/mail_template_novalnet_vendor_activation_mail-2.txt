@@ -1,0 +1,1 @@
+Novalnet callback script executed successfully with Novalnet account activation information.
