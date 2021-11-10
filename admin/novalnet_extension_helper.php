@@ -1,0 +1,299 @@
+<?php
+/**
+ * Novalnet payment module related file
+ * This module is used for real time processing of
+ * Novalnet transaction of customers.
+ *
+ * @category   PHP
+ * @package    NovalnetGateway
+ * @author     Novalnet AG
+ * @copyright  Copyright by Novalnet
+ * @license    https://www.novalnet.de/payment-plugins/kostenlos/lizenz
+ *
+ * Script : novalnet_extension_helper.php
+ *
+ */
+require ('includes/application_top.php');
+include_once(DIR_FS_CATALOG."ext/novalnet/NovalnetHelper.class.php");
+include_once(DIR_FS_LANGUAGES . $_SESSION['language']."/modules/payment/novalnet.php");
+include_once(DIR_FS_INC . 'xtc_format_price_order.inc.php');
+$request   = $_POST;
+$datas     = NovalnetHelper::getNovalnetTransDetails($_POST['oID']);
+$client_ip = xtc_get_ip_address();
+$request['remote_ip'] = NovalnetHelper::getIpAddress($client_ip);
+	if (!empty($request['nn_refund_confirm']) && $request['refund_trans_amount'] != '') { // To process refund process
+            $refund_params = array(
+                'vendor' 		=> $datas['vendor'],
+                'product' 		=> $datas['product'],
+                'key' 			=> $datas['payment_id'],
+                'tariff' 		=> $datas['tariff_id'],
+                'auth_code' 	=> $datas['auth_code'],
+                'refund_request'=> '1',
+                'remote_ip'     => $request['remote_ip'],
+                'tid' 			=> $datas['tid'],
+                'refund_param' 	=> $request['refund_trans_amount']
+            );
+            if (!empty($request['refund_ref'])) { // Assigning refund ref tid
+                $refund_params['refund_ref'] = $request['refund_ref'];
+            }
+            // Send the request to Novalnet server
+            $response = NovalnetHelper::doPaymentCurlCall('https://payport.novalnet.de/paygate.jsp', $refund_params);
+            parse_str($response, $data);
+            $order_status            = '';
+            $param['gateway_status'] = $data['tid_status'];
+            if ($data['status'] == 100) { // Payment success
+                $message .= PHP_EOL . sprintf(utf8_encode(MODULE_PAYMENT_NOVALNET_REFUND_PARENT_TID_MSG), $datas['tid'], xtc_format_price_order(($request['refund_trans_amount'] / 100), 1, $datas['currency']));
+                $newtid = !empty($data['tid']) ? $data['tid'] : (!empty($data['paypal_refund_tid']) ? $data['paypal_refund_tid'] : '');
+                if (!empty($newtid)) { // Get new tid for refund process
+                    $message .= sprintf(utf8_encode(MODULE_PAYMENT_NOVALNET_REFUND_CHILD_TID_MSG), $newtid);
+                }
+                $message .= PHP_EOL;
+                $order_status       = xtc_db_fetch_array(xtc_db_query("SELECT orders_status from " . TABLE_ORDERS . " where orders_id = " . xtc_db_input($request['oID'])));
+                $order_status_value = $order_status['orders_status'];
+                $param['refund_amount'] = ($datas['refund_amount']+$request['refund_trans_amount']);
+                // Transaction details update the shop Novalnet table
+                xtc_db_perform('novalnet_transaction_detail', $param, "update", "tid='" . $datas['tid'] . "'");
+                // Update the void status
+                if ($param['gateway_status'] != 100) { // Process for onhold
+                    $order_status_value = MODULE_PAYMENT_NOVALNET_ONHOLD_ORDER_CANCELLED;
+                    xtc_db_perform(TABLE_ORDERS, array(
+                        'orders_status' => $order_status_value
+                    ), 'update', 'orders_id="' . $request['oID'] . '"');
+                }
+                // Update the order status in shop
+                updateOrderStatus($request['oID'], $order_status_value, utf8_decode($message), true,true);
+            }
+			$response = http_build_query($data);
+            // Redirect to shop
+            xtc_redirect(xtc_href_link(FILENAME_ORDERS, 'action=edit&'.$response.'&oID=' . (int)$request['oID']));
+    } else if (!empty($request['new_amount']) && isset($request['nn_amount_update_confirm'])) { // To process amount update field
+			$orderInfo_details = unserialize($datas['payment_details']);
+			$due_date = $orderInfo_details['due_date'];
+			if (!empty($request['amount_change_year']) && !empty($request['amount_change_month']) && !empty($request['amount_change_day'])) {
+				$due_date = $request['amount_change_year'].'-'.$request['amount_change_month'].'-'.$request['amount_change_day'];
+			}
+            $amount_change_request = array(
+                'vendor' 			=> $datas['vendor'],
+                'product' 			=> $datas['product'],
+                'key' 				=> $datas['payment_id'],
+                'tariff' 			=> $datas['tariff_id'],
+                'auth_code' 		=> $datas['auth_code'],
+                'edit_status' 		=> '1',
+                'remote_ip'         => $request['remote_ip'],
+                'tid' 				=> $datas['tid'],
+                'status' 			=> 100,
+                'update_inv_amount' => '1',
+                'amount' 			=> $request['new_amount']
+            );
+            if (in_array($datas['payment_id'], array(27,59)) && !empty($due_date)) { // Due_date added for payment invoice ,prepayment only
+                $amount_change_request['due_date'] = date('Y-m-d', strtotime($due_date));
+            }
+			// Send the request to Novalnet server
+            $response = NovalnetHelper::doPaymentCurlCall('https://payport.novalnet.de/paygate.jsp', $amount_change_request);
+            parse_str($response, $data);
+            if ($data['status'] == 100) { // Amount update success in shop
+                $message                 = PHP_EOL . sprintf(utf8_encode(MODULE_PAYMENT_NOVALNET_TRANS_UPDATED_MESSAGE), xtc_format_price_order(($request['new_amount'] / 100), 1, $datas['currency']), date('d.m.Y', strtotime($due_date)), date('H:i:s')) . PHP_EOL;
+                $orderInfo               = xtc_db_fetch_array(xtc_db_query("SELECT orders_status from " . TABLE_ORDERS . " where orders_id = " . xtc_db_input($request['oID'])));
+                $param                   = array();
+                $param =  array (
+						'gateway_status'=> $data['tid_status'],
+						'amount'        => $request['new_amount']);
+                if ($datas['payment_id'] == 37) { // Allow only sepa payment
+					$message                 = PHP_EOL . sprintf(utf8_encode(MODULE_PAYMENT_NOVALNET_SEPA_TRANS_AMOUNT_UPDATED_MESSAGE), xtc_format_price_order(($request['new_amount'] / 100), 1, $datas['currency']), date('d.m.Y', strtotime(date('Y-m-d'))), date('H:i:s')) . PHP_EOL;
+
+					$callback_param['order_amount'] =$callback_param['callback_amount'] = $request['new_amount'];
+					xtc_db_perform('novalnet_callback_history', $callback_param, "update", "original_tid='" . $datas['tid'] . "'");
+                }
+                if (in_array($datas['payment_id'],array(27,59))) { // Allowed only payment id 27 and 59
+                    $orderInfo_comments = NovalnetHelper::transactionCommentsForm($datas,$datas['payment_type']);
+                    $transaction_comments     = '';
+                    if($datas['payment_id'] == 27 ) {
+						// To form Novalnet transaction comments
+						$novalnetPaymentReference = NovalnetHelper::formInvoicePrepaymentPaymentReference($datas['payment_ref'],$datas['payment_type'], $datas);
+						list($transaction_Details, $bank_details) = NovalnetHelper::formInvoicePrepaymentComments(array(
+							'invoice_account_holder'=> $orderInfo_details['account_holder'],
+							'invoice_bankname'  => $orderInfo_details['bank_name'],
+							'invoice_bankplace' => $orderInfo_details['bank_city'],
+							'amount' 			=> sprintf("%.2f", ($request['new_amount'] / 100)),
+							'currency' 			=> $orderInfo_details['currency'],
+							'tid' 				=> $orderInfo_details['tid'],
+							'invoice_iban' 		=> $orderInfo_details['bank_iban'],
+							'invoice_bic' 		=> $orderInfo_details['bank_bic'],
+							'due_date' 			=> $amount_change_request['due_date']
+						));
+						$transaction_comments .= $orderInfo_comments . $transaction_Details . $novalnetPaymentReference;
+						$param['payment_details'] = serialize($bank_details); // To get bank details
+						$orderInfo['comments'] = $transaction_comments;
+					} else {
+						$orderInfo_comments .= MODULE_PAYMENT_NOVALNET_TRANS_SLIP_EXPIRY_DATE.date('d.m.Y',strtotime($amount_change_request['due_date'])).PHP_EOL;
+						$orderInfo_comments .= PHP_EOL.MODULE_PAYMENT_NOVALNET_NEAREST_STORE_DETAILS.PHP_EOL;
+						$nearest_store =  NovalnetHelper::getNearestStore($orderInfo_details,'nearest_store');
+						$cashpayment_slip_details = array_merge($nearest_store,array('due_date'=> $amount_change_request['due_date']));
+						$param['payment_details'] = serialize($cashpayment_slip_details);
+						$i = 0;
+						foreach ($nearest_store as $key => $values){
+							$i++;
+							$country_name = xtc_db_fetch_array(xtc_db_query("select countries_name from " . TABLE_COUNTRIES . " where countries_iso_code_2 = '" . $nearest_store['nearest_store_country_'.$i] . "'"));
+							if(!empty($nearest_store['nearest_store_title_'.$i])) {
+								$orderInfo_comments .= PHP_EOL . $nearest_store['nearest_store_title_'.$i].PHP_EOL;
+							}
+							if (!empty($nearest_store['nearest_store_street_'.$i])) {
+								$orderInfo_comments .= $nearest_store['nearest_store_street_'.$i].PHP_EOL;
+							}
+							if(!empty($nearest_store['nearest_store_city_'.$i])) {
+								$orderInfo_comments .= $nearest_store['nearest_store_city_'.$i].PHP_EOL;
+							}
+							if(!empty($nearest_store['nearest_store_zipcode_'.$i])) {
+								$orderInfo_comments .= $nearest_store['nearest_store_zipcode_'.$i].PHP_EOL;
+							}
+							if(!empty($nearest_store['nearest_store_country_'.$i])) {
+								$orderInfo_comments .= $country_name['countries_name'].PHP_EOL;
+							}
+						}
+						$transaction_comments     = $orderInfo['comments'] = $orderInfo_comments;
+					}
+					$call_amount['order_amount'] = $request['new_amount'];
+					xtc_db_perform('novalnet_callback_history',$call_amount , "update", "original_tid='" . $datas['tid'] . "'");
+					xtc_db_perform(TABLE_ORDERS, $orderInfo, 'update', 'orders_id="' . $request['oID'] . '"');
+				}
+                // Transaction details update the shop Novalnet table
+                xtc_db_perform('novalnet_transaction_detail', $param, "update", "tid='" . $datas['tid'] . "'");
+                // Update the order status in shop
+                updateOrderStatus($request['oID'], $orderInfo['orders_status'], utf8_decode($message) . $transaction_comments, true, true);
+            }
+            $response = http_build_query($data);
+            // Redirect to shop
+            xtc_redirect(xtc_href_link(FILENAME_ORDERS, 'action=edit&'.$response.'&oID=' . (int)$request['oID']));
+	} else if (isset($request['nn_manage_confirm']) && !empty($request['trans_status'])) { //  To process on-hold transaction
+		// Send the request to Novalnet server
+			$response      = NovalnetHelper::doPaymentCurlCall('https://payport.novalnet.de/paygate.jsp',  array(
+                'vendor' 		=> $datas['vendor'],
+                'product' 		=> $datas['product'],
+                'key' 			=> $datas['payment_id'],
+                'tariff' 		=> $datas['tariff_id'],
+                'auth_code' 	=> $datas['auth_code'],
+                'edit_status' 	=> '1',
+                'remote_ip'     => $request['remote_ip'],
+                'tid' 			=> $datas['tid'],
+                'status' 		=> $request['trans_status'] //Status 100 or 103
+            ));
+
+            parse_str($response, $data);
+            if ($data['status'] == 100 || ($data['status'] == 90 && $datas['payment_type'] == 'novalnet_paypal' )) { // Payment success
+                $param = array('gateway_status'  => $data['tid_status']);
+				if($datas['payment_type'] == 'novalnet_paypal') {
+					if(MODULE_PAYMENT_NOVALNET_PAYPAL_SHOP_TYPE == 'ONECLICK' && !empty($data['paypal_transaction_id'])) {
+						$param['payment_details'] = serialize(array(
+											'paypal_transaction_tid'   => $data['paypal_transaction_id'],
+											'novalnet_transaction_tid' => $datas['tid']));
+					}
+					$amout_update['callback_amount'] = $data['tid_status'] == 90 ? 0 : $datas['amount'];
+					xtc_db_perform('novalnet_callback_history', $amout_update, "update", "original_tid='" . $datas['tid'] . "'");
+				}
+				$comments = sprintf(MODULE_PAYMENT_NOVALNET_TRANS_CONFIRM_SUCCESSFUL_MESSAGE, date('d.m.Y', strtotime(date('d.m.Y'))), date('H:i:s'));
+				if (in_array($datas['payment_id'],array('27','41'))) {
+					$datas = NovalnetHelper::getNovalnetTransDetails($request['oID']);
+					$serialize_data = unserialize($datas['payment_details']);
+					$nn_duedate= date('d.m.Y',strtotime($data['due_date']));
+					$comments    = sprintf(MODULE_PAYMENT_NOVALNET_INVOICE_ON_HOLD_CONFIRM_TEXT,$datas['tid'],$nn_duedate);
+					$serialize_data['due_date']  = $data['due_date'];
+					$on_hold_serialize_data      = serialize($serialize_data);
+                    $orderInfo_comments .= PHP_EOL . MODULE_PAYMENT_NOVALNET_TRANSACTION_ID . $datas['tid'] . ((($datas['test_mode'] == 1) || constant('MODULE_PAYMENT_' . strtoupper($datas['payment_type']) . '_TEST_MODE') == 'True') ? PHP_EOL . MODULE_PAYMENT_NOVALNET_TEST_ORDER_MESSAGE . PHP_EOL : '');
+                    $transaction_comments     = '';
+					// To form Novalnet transaction comments
+					$novalnetPaymentReference = NovalnetHelper::formInvoicePrepaymentPaymentReference($datas['payment_ref'],$datas['payment_type'], $datas);
+					list($transaction_Details) = NovalnetHelper::formInvoicePrepaymentComments(array(
+						'invoice_account_holder'   => $serialize_data['account_holder'],
+						'invoice_bankname'         => $serialize_data['bank_name'],
+						'invoice_bankplace'        => $serialize_data['bank_city'],
+						'amount' 			       => sprintf("%.2f", ($serialize_data['amount'] / 100)),
+						'currency' 			       => $serialize_data['currency'],
+						'tid' 				       => $serialize_data['tid'],
+						'invoice_iban' 		       => $serialize_data['bank_iban'],
+						'invoice_bic' 		       => $serialize_data['bank_bic'],
+						'due_date' 			       => $data['due_date']
+					));
+					$comments .= $orderInfo_comments . $transaction_Details . $novalnetPaymentReference;
+					if($request['trans_status'] == '100'){ 
+						NovalnetHelper::guarantee_mail(array(
+								'comments' => '<br>' . $comments,
+								'order_no' => $request['oID'],
+						),$datas);
+					}
+					$param['payment_details']  =  $on_hold_serialize_data;
+				}
+                 $order_status            = ($request['trans_status'] == 100) ? constant('MODULE_PAYMENT_' . strtoupper($datas['payment_type']) . '_ORDER_STATUS') : MODULE_PAYMENT_NOVALNET_ONHOLD_ORDER_CANCELLED;
+                // Transaction details update the shop novalnet table
+                xtc_db_perform('novalnet_transaction_detail', $param, "update", "tid='" . $datas['tid'] . "'");
+                // Update the order status in shop
+                xtc_db_perform(TABLE_ORDERS, array(
+                    'orders_status' => $order_status
+                ), 'update', 'orders_id="' . $request['oID'] . '"');
+                ($request['trans_status'] == 100) ? updateOrderStatus($request['oID'], $order_status, PHP_EOL . $comments . PHP_EOL, true,true) : updateOrderStatus($request['oID'], $order_status, PHP_EOL . sprintf(MODULE_PAYMENT_NOVALNET_TRANS_DEACTIVATED_MESSAGE, date('d.m.Y', strtotime(date('d.m.Y'))), date('H:i:s')) . PHP_EOL, true,true);
+            }
+			$response = http_build_query($data);
+            // Redirect to shop
+            xtc_redirect(xtc_href_link(FILENAME_ORDERS, 'action=edit&'.$response.'&oID=' . (int)$request['oID']));
+	} else  if (!empty($request['nn_book_confirm']) && !empty($request['book_amount'])) { // To process zero amount booking transaction
+		    $urlparams                = unserialize($datas['payment_details']); 
+            $urlparams['amount']      = trim($request['book_amount']);
+            $urlparams['order_no']    = $request['oID'];
+            $urlparams['payment_ref'] = $datas['tid'];
+            unset($urlparams['create_payment_ref']);
+            if (!empty($urlparams['sepa_due_date'])) { // Assigning Due date param sepa Payment only
+				$due_date   = (defined('MODULE_PAYMENT_NOVALNET_SEPA_PAYMENT_DUE_DATE')) ? MODULE_PAYMENT_NOVALNET_SEPA_PAYMENT_DUE_DATE : 0;
+                $sepa_duedate              = ((trim($due_date) != '' && trim($due_date) >= 2 && trim($due_date) <= 14) ? trim($due_date) : ''); 
+                if(!empty($sepa_duedate))
+                {
+                  $urlparams['sepa_due_date'] = (date('Y-m-d', strtotime('+' . $sepa_duedate . ' days')));
+			    }else{
+					unset($urlparams['sepa_due_date']);
+				}
+            }
+            // Send the request to Novalnet server
+            $response = NovalnetHelper::doPaymentCurlCall('https://payport.novalnet.de/paygate.jsp', $urlparams);
+            parse_str($response, $data);
+            if ($data['status'] == 100 || ( $data['status'] == 90 && $datas['payment_type'] == 'novalnet_paypal' )) { // Zero amount booking process success
+                $orderInfo = xtc_db_fetch_array(xtc_db_query("SELECT orders_status from " . TABLE_ORDERS . " where orders_id = " . xtc_db_input($request['oID'])));
+                $test_mode_msg = (isset($data['test_mode']) && $data['test_mode'] == 1) ? PHP_EOL . MODULE_PAYMENT_NOVALNET_TEST_ORDER_MESSAGE . PHP_EOL : '';
+                $message = PHP_EOL . MODULE_PAYMENT_NOVALNET_TRANSACTION_ID . $data['tid'] . $test_mode_msg;
+				$message .=  PHP_EOL . sprintf(MODULE_PAYMENT_NOVALNET_TRANS_BOOKED_MESSAGE, xtc_format_price_order(($request['book_amount'] / 100), 1, $datas['currency']), $data['tid']) . PHP_EOL;
+                $param['tid'] = $data['tid'];
+                
+                $callback_param['original_tid'] = $data['tid'];
+                $callback_param['callback_amount']= ( $data['status'] == 100 ) ? $urlparams['amount'] : 0 ;
+                $callback_param['order_amount'] = $urlparams['amount'];
+                xtc_db_perform('novalnet_callback_history', $callback_param, "update", "order_no='" . xtc_db_input($request['oID']) . "'");
+                $param =  array(
+								'amount'          => $urlparams['amount'],
+								'gateway_status'  => $data['tid_status'],
+								'tid'  		      => $data['tid'],
+				);
+				updateOrderStatus($request['oID'], $orderInfo['orders_status'], $message, true,true);
+				// Transaction details update the shop Novalnet table
+                xtc_db_perform('novalnet_transaction_detail', $param, "update", "order_no='" . xtc_db_input($request['oID']) . "'");
+            }
+			$response = http_build_query($data);
+            // Redirect to shop
+            xtc_redirect(xtc_href_link(FILENAME_ORDERS, 'action=edit&'.$response.'&oID=' . (int)$request['oID']));
+	} 
+
+    /**
+     * Update order status in the shop
+     *
+     * @param integer $order_id
+     * @param string $orders_status_id
+     * @param string $message
+     * @param boolean $insert_status_history
+     * @param boolean $customer_notified
+     */
+    function updateOrderStatus($order_id, $orders_status_id, $message, $insert_status_history, $customer_notified) {
+		if ($insert_status_history) { // Insert record into shop table
+			$customer_notified_status = (($customer_notified) ? 1 : 0);
+			xtc_db_perform(TABLE_ORDERS, array(
+            'orders_status' => $orders_status_id,
+            'comments' 		=> $message
+			), "update", "orders_id='$order_id'");
+            xtc_db_query("INSERT INTO " . TABLE_ORDERS_STATUS_HISTORY . " SET orders_id =  '$order_id',orders_status_id = '$orders_status_id', date_added = NOW(), customer_notified = '$customer_notified_status', comments = '$message'");
+        }
+    }
