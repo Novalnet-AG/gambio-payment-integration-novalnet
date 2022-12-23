@@ -1,0 +1,37 @@
+<?php
+include_once (dirname(__FILE__).'/novalnet.php');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TEXT_TITLE', 'Novalnet Instalment by Direct Debit SEPA');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ALLOWED_TITLE','Allowed zone(-s)');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ALLOWED_DESC','This payment method will be allowed for the mentioned zone(-s). Enter the zone(-s) in the following format E.g: DE, AT, CH. In case if the field is empty, all the zones will be allowed.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_STATUS_TITLE','Enable payment method');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_STATUS_DESC','Do you want to accept instalment by sepa payment?');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TEST_MODE_TITLE','Enable test mode');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TEST_MODE_DESC','The payment will be processed in the test mode therefore amount for this transaction will not be charged');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_SORT_ORDER_TITLE','Display Sort Order');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_SORT_ORDER_DESC','Display sort order; the lowest value is displayed first.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ORDER_STATUS_TITLE','Completed order status');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ORDER_STATUS_DESC','Status to be used for successful orders');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_PAYMENT_ZONE_TITLE','Payment zone');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_PAYMENT_ZONE_DESC','When a zone is selected, this payment method will be enabled for that zone only.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_BASIC_REQ_TITLE','<h3>Basic requirements:</h3>Allowed B2B countries: European Union <br> Allowed B2C countries: Germany, Austria, Switzerland <br> Allowed currency: € <br> Minimum order amount: 19,98 € or more <br>Please note that the instalment cycle amount has to be a minimum of 9.99 EUR and the instalment cycles which do not meet this criteria will not be displayed in the instalment plan <br> Age limit: 18 years or more<br> The billing address must be the same as the shipping address');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_BASIC_REQ_DESC','&nbsp;');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_MINIMUM_ORDER_AMOUNT_TITLE','Minimum order amount');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_MINIMUM_ORDER_AMOUNT_DESC','Minimum order amount to display the selected payment method (s) at during checkout (in minimum unit of currency. E.g. enter 100 which is equal to 1.00)');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_DESC','&nbsp;');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ALLOW_B2B_TITLE','Allow B2B Customers');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ALLOW_B2B_DESC','Allow B2B customers to place order');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_AUTHENTICATE_TITLE','Payment action');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_AUTHENTICATE_DESC','Choose whether or not the payment should be charged immediately. Authorize verifies payment details and reserves funds to capture it later, giving time for the merchant to decide on the order.</br></br>Authorize');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_MANUAL_CHECK_LIMIT_TITLE','Minimum transaction amount for authorization');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_MANUAL_CHECK_LIMIT_DESC', 'In case the order amount exceeds the mentioned limit, the transaction will be set on-hold till your confirmation of the transaction. You can leave the field empty if you wish to process all the transactions as on-hold (in minimum unit of currency. E.g. enter 100 which is equal to 1.00).');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_CYCLE_TITLE', 'Instalment cycles');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_CYCLE_DESC', 'Select the instalment cycles that can be availed in the instalment plan');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_PAYMENT_DUE_DATE_TITLE', 'Payment due date (in days)');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_PAYMENT_DUE_DATE_DESC', 'Number of days after which the payment is debited (must be between 2 and 14 days)');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TOKENIZATION_TITLE', 'One click shopping');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TOKENIZATION_DESC', 'Payment details stored during the checkout process can be used for future payments');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_SAVE_CARD_DETAILS', 'Save for future purchase');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_NEW_ACCOUNT_DETAILS', 'Use a new payment method');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ENDCUSTOMER_INFO_TITLE','Notification for the buyer');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ENDCUSTOMER_INFO_DESC','The entered text will be displayed on the checkout page');
+?>
