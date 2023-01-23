@@ -30,7 +30,7 @@ Through the individuality and flexibility, you can choose which payment methods 
 * Find currently supported payment methods on https://www.novalnet.com/integration/gambio-gx2-payment-module/
 
 ## More information
-Find more about gambio module on: https://www.novalnet.de/site_pdf/Installation_Guide-gambio_4.2.0.0-4.7.1.2_novalnet_12.0.1.pdf<br>
+Find more about gambio module on: https://www.novalnet.de/site_pdf/Installation_Guide-gambio_4.2.0.0-4.7.2.1_novalnet_12.0.2.pdf<br>
 To test our demo shop, please visit: https://gambio.novalnet.de
 
 ## Contact
