@@ -1,0 +1,37 @@
+<?php
+include_once (dirname(__FILE__).'/novalnet.php');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TEXT_TITLE', 'Novalnet Ratenzahlung per SEPA-Lastschrift');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ALLOWED_TITLE','Erlaubte Zone(n)');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ALLOWED_DESC','Diese Zahlungsmethode ist nur für die angegebene(n) Zone(n) zulässig. Geben Sie die Zone(n) in folgendem Format ein, z.B: DE, AT, CH. Wenn das Feld leer ist, werden alle Zonen zugelassen.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_STATUS_TITLE','Zahlungsart aktivieren');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_STATUS_DESC','Möchten Sie eine Ratenzahlung per Sepa akzeptieren?');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TEST_MODE_TITLE','Testmodus aktivieren');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TEST_MODE_DESC','Die Zahlung wird im Testmodus durchgeführt, daher wird der Betrag für diese Transaktion nicht eingezogen.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_SORT_ORDER_TITLE','Sortierreihenfolge anzeigen');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_SORT_ORDER_DESC','Sortierreihenfolge anzeigen; der niedrigste Wert wird zuerst angezeigt.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ORDER_STATUS_TITLE','Status für erfolgreichen Auftragsabschluss');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ORDER_STATUS_DESC','Status, der für erfolgreiche Bestellungen zu verwenden ist');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_PAYMENT_ZONE_TITLE','Zahlungsbereich');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_PAYMENT_ZONE_DESC','Wenn eine Zone ausgewählt wird, wird diese Zahlungsmethode nur für diese Zone aktiviert.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_BASIC_REQ_TITLE','<h2> Grundanforderungen: </h2>Erlaubte B2C-Länder: Deutschland, Österreich, Schweiz <br> Erlaubte B2B-Länder: Europäische Union <br>Erlaubte Währung: € <br> Mindestbestellwert: 19,98 € <br>Bitte beachten Sie, dass der Betrag einer Rate mindestens 9.99 EUR betragen muss und Raten, die diese Kriterien nicht erfüllen, nicht im Ratenplan angezeigt werden<br>Mindestalter: 18 Jahre oder mehr<br> Rechnungsadresse und Lieferadresse müssen übereinstimmen');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_BASIC_REQ_DESC','&nbsp;');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_MINIMUM_ORDER_AMOUNT_TITLE','Mindestbestellbetrag');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_MINIMUM_ORDER_AMOUNT_DESC','Mindestbestellsumme zur Anzeige der ausgewählten Zahlungsart(en) im Checkout (in der kleinsten Währungseinheit, z.B. 100 Cent = entsprechen 1.00 EUR)');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_DESC','&nbsp;');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ALLOW_B2B_TITLE','B2B-Kunden erlauben');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ALLOW_B2B_DESC','B2B-Kunden erlauben, Bestellungen aufzugeben');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_AUTHENTICATE_TITLE','Aktion für vom Besteller autorisierte Zahlungen.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_AUTHENTICATE_DESC','Wählen Sie, ob die Zahlung sofort belastet werden soll oder nicht. Authorize prüft die Zahlungsdetails und reserviert Mittel, um sie später zu erfassen, damit der Händler Zeit hat, über die Bestellung zu entscheiden.</br></br> Zahlung autorisieren');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_MANUAL_CHECK_LIMIT_TITLE','Mindesttransaktionsbetrag für die Autorisierung');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_MANUAL_CHECK_LIMIT_DESC', 'Übersteigt der Bestellbetrag das genannte Limit, wird die Transaktion, bis zu ihrer Bestätigung durch Sie, auf on hold gesetzt. Sie können das Feld leer lassen, wenn Sie möchten, dass alle Transaktionen als on hold behandelt werden. (in der kleinsten Währungseinheit, z.B. 100 Cent = entsprechen 1.00 EUR).');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_CYCLE_TITLE', 'Anzahl der Raten');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_CYCLE_DESC', 'Wählen Sie die zeitliche Abfolge der Raten für den Ratenzahlungsplan');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_PAYMENT_DUE_DATE_TITLE', 'Fälligkeitsdatum (in Tagen)');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_PAYMENT_DUE_DATE_DESC', 'Anzahl der Tage, nach denen die Zahlung abgebucht wird (muss zwischen 2 und 14 Tagen liegen)');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TOKENIZATION_TITLE', 'Kauf mit einem Klick');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TOKENIZATION_DESC', 'Zahlungsdaten, die während des Bestellvorgangs gespeichert werden, können für zukünftige Zahlungen verwendet werden');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_SAVE_CARD_DETAILS', 'Sparen für zukünftige Käufe');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_NEW_ACCOUNT_DETAILS', 'Verwenden Sie eine neue Zahlungsmethode');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ENDCUSTOMER_INFO_TITLE','Benachrichtigung des Käufers');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ENDCUSTOMER_INFO_DESC','Der eingegebene Text wird auf der Kassenseite angezeigt');
+?>

@@ -1,0 +1,31 @@
+<?php
+include_once (dirname(__FILE__).'/novalnet.php');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_TEXT_TITLE', 'Novalnet Ratenzahlung per Rechnung');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_ALLOWED_TITLE','Erlaubte Zone(n)');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_ALLOWED_DESC','Diese Zahlungsmethode ist nur für die angegebene(n) Zone(n) zulässig. Geben Sie die Zone(n) in folgendem Format ein, z.B: DE, AT, CH. Wenn das Feld leer ist, werden alle Zonen zugelassen.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_STATUS_TITLE','Zahlungsart aktivieren');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_STATUS_DESC','Möchten Sie eine Ratenzahlung per Rechnung akzeptieren?');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_TEST_MODE_TITLE','Testmodus aktivieren');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_TEST_MODE_DESC','Die Zahlung wird im Testmodus durchgeführt, daher wird der Betrag für diese Transaktion nicht eingezogen.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_SORT_ORDER_TITLE','Sortierreihenfolge anzeigen');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_SORT_ORDER_DESC','Sortierreihenfolge anzeigen; der niedrigste Wert wird zuerst angezeigt.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_ORDER_STATUS_TITLE','Status für erfolgreichen Auftragsabschluss');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_ORDER_STATUS_DESC','Status, der für erfolgreiche Bestellungen zu verwenden ist');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_PAYMENT_ZONE_TITLE','Zahlungsbereich');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_PAYMENT_ZONE_DESC','Wenn eine Zone ausgewählt wird, wird diese Zahlungsmethode nur für diese Zone aktiviert.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_BASIC_REQ_TITLE','<h2> Grundanforderungen: </h2>Erlaubte B2C-Länder: Deutschland, Österreich, Schweiz <br> Erlaubte B2B-Länder: Europäische Union <br>Erlaubte Währung: € <br> Mindestbestellwert: 19,98 € <br>Bitte beachten Sie, dass der Betrag einer Rate mindestens 9.99 EUR betragen muss und Raten, die diese Kriterien nicht erfüllen, nicht im Ratenplan angezeigt werden<br>Mindestalter: 18 Jahre oder mehr<br> Rechnungsadresse und Lieferadresse müssen übereinstimmen');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_BASIC_REQ_DESC','&nbsp;');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_MINIMUM_ORDER_AMOUNT_TITLE',' Mindestbestellbetrag');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_MINIMUM_ORDER_AMOUNT_DESC','Mindestbestellbetrag zur Anzeige der ausgewählten Zahlungsart(en) im Checkout (in der kleinsten Währungseinheit, z.B. 100 Cent = entsprechen 1.00 EUR)');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_DESC','&nbsp;');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_ALLOW_B2B_TITLE','B2B-Kunden erlauben');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_ALLOW_B2B_DESC','B2B-Kunden erlauben, Bestellungen aufzugeben');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_ENDCUSTOMER_INFO_TITLE','Benachrichtigung des Käufers');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_ENDCUSTOMER_INFO_DESC','Der eingegebene Text wird auf der Kassenseite angezeigt');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_AUTHENTICATE_TITLE','Aktion für vom Besteller autorisierte Zahlungen.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_AUTHENTICATE_DESC','Wählen Sie, ob die Zahlung sofort belastet werden soll oder nicht. Authorize prüft die Zahlungsdetails und reserviert Mittel, um sie später zu erfassen, damit der Händler Zeit hat, über die Bestellung zu entscheiden.</br></br> Zahlung autorisieren');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_MANUAL_CHECK_LIMIT_TITLE','Mindesttransaktionsbetrag für die Autorisierung');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_MANUAL_CHECK_LIMIT_DESC', 'Übersteigt der Bestellbetrag das genannte Limit, wird die Transaktion, bis zu ihrer Bestätigung durch Sie, auf on hold gesetzt. Sie können das Feld leer lassen, wenn Sie möchten, dass alle Transaktionen als on hold behandelt werden.  (in der kleinsten Währungseinheit, z.B. 100 Cent = entsprechen 1.00 EUR).');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_CYCLE_TITLE', 'Anzahl der Raten');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_INVOICE_CYCLE_DESC', 'Wählen Sie die zeitliche Abfolge der Raten für den Ratenzahlungsplan');
+?>

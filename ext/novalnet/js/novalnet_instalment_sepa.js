@@ -1,0 +1,151 @@
+/**
+ * Novalnet payment module
+ *
+ * This script is used for Instalment SEPA plan tables
+ *
+ * @author     Novalnet AG
+ * @copyright  Copyright (c) Novalnet
+ * @license    https://www.novalnet.de/payment-plugins/kostenlos/lizenz
+ * @link       https://www.novalnet.de
+ *
+ * Script: novalnet_instalment_sepa.js
+ */
+
+if (window.addEventListener) {
+	window.addEventListener("load", instalment_table_sepa);
+	window.addEventListener("change", instalment_table_sepa);
+} else if (window.attachEvent) {
+	window.attachEvent("onload", instalment_table_sepa);
+	window.attachEvent("change", instalment_table_sepa);
+}
+
+//Show instalment SEPA plan details
+function instalment_table_sepa() {
+	var novalnet_order_cycle_period = $("#novalnet_global_recurring_period_cycles_sepa option:selected").val();
+	var order_amount = $("#order_amount").val();
+	var total_amount = 0, instalment_due = 0, last_instalment_due = 0;
+	var nn_dob_placeholder = jQuery('#nn_dob_placeholder').val();
+	jQuery('#novalnet_instalment_sepa_dob').attr("placeholder", nn_dob_placeholder);
+	total_amount = (parseFloat(order_amount)).toFixed(2);
+	for (var i=1;i<=novalnet_order_cycle_period;i++) {
+		if (novalnet_order_cycle_period != i) {
+			split_amount = (parseFloat(total_amount/novalnet_order_cycle_period)).toFixed(2);
+			instalment_due = parseFloat(instalment_due) + parseFloat(split_amount);
+			} else {
+				last_instalment_due = (parseFloat (total_amount - instalment_due)).toFixed(2);
+			}
+	}
+
+	var number_text = '';
+	var currency = $('#nn_installmnet_currency').val();
+	var final_due = novalnet_order_cycle_period-1;
+	if (novalnet_order_cycle_period == '0') {
+		$("#novalnet_instalment_table_sepa thead tr").remove();
+	} else {
+		$("#novalnet_instalment_table_sepa thead tr").remove();
+		$("#novalnet_instalment_table_sepa thead").append( "<tr><th>" + jQuery('#nn_cycles_frontend').val() + "</th><th>" + jQuery('#nn_amount_frontend').val() + "</th></tr>");
+	}
+	$("#novalnet_instalment_table_sepa").show();
+	$("#novalnet_instalment_table_sepa tbody tr").remove();
+	for (var j=0;j<novalnet_order_cycle_period;j++ ) {
+		if ($( "#nn_shop_lang" ).val() == 'en') {
+			if (j+1 == 1 || j+1 == 21) {
+				number_text = j+1+"st "+ jQuery('#nn_installment_frontend').val();
+			} else if (j+1 == 2 || j+1 == 22) {
+				number_text = j+1+"nd "+jQuery('#nn_installment_frontend').val();
+			} else if (j+1 == 3) {
+				number_text = j+1+"rd "+jQuery('#nn_installment_frontend').val();
+			} else {
+				number_text = j+1+"th "+jQuery('#nn_installment_frontend').val();
+			}
+		} else {
+			if (j+1 == 1 || j+1 == 21) {
+				number_text = j+1+"st "+ jQuery('#nn_installment_frontend').val();
+			} else if (j+1 == 2 || j+1 == 22) {
+				number_text = j+1+"nd "+jQuery('#nn_installment_frontend').val();
+			} else if (j+1 == 3) {
+				number_text = j+1+"rd "+jQuery('#nn_installment_frontend').val();
+			} else {
+				number_text = j+1+"th "+jQuery('#nn_installment_frontend').val();
+			}
+		}
+		if (final_due != j) {
+			$("#novalnet_instalment_table_sepa tbody").append("<tr><td>" + number_text + "</td><td>" + split_amount + " " + currency + "</td></tr>");
+		} else {
+			$("#novalnet_instalment_table_sepa tbody").append("<tr><td>" + number_text + "</td><td>" + last_instalment_due + " " + currency + "</td></tr>");
+		}
+	}
+}
+
+if (window.addEventListener) {
+	window.addEventListener('load', novalnet_instalment_sepa_load);
+} else if (window.attachEvent) {
+    window.attachEvent('onload', novalnet_instalment_sepa_load);
+}
+
+function novalnet_instalment_sepa_load() {
+	var value = jQuery("input[name='payment']").val().toUpperCase();
+    jQuery('form').each(function () {
+		if (jQuery(this).attr('id') == 'checkout_payment') {
+			formid = 'checkout_payment';
+		}
+	});
+
+    jQuery('#'+formid).submit(
+		function (event) {
+            var selected_payment = (jQuery("input[name='payment']").attr('type') == 'hidden') ? jQuery("input[name='payment']").val() : jQuery("input[name='payment']:checked").val();
+            if (selected_payment == 'novalnet_instalment_sepa') {
+                if (jQuery('#novalnet_instalment_sepa_iban') !== undefined) {
+                    var iban = NovalnetUtility.formatAlphaNumeric(jQuery('#novalnet_instalment_sepa_iban').val());
+                    if (iban === '') {
+                        return false;
+                    }
+                }
+            }
+        });
+
+	jQuery('#novalnet_instalment_sepa_iban_field').keyup(function (event) {
+		jQuery(this).val(jQuery(this).val().toUpperCase());
+		if (jQuery('#novalnet_instalment_sepa_iban_field') !== undefined) {
+			var iban = NovalnetUtility.formatIban(jQuery('#novalnet_instalment_sepa_iban').val());
+			if (iban == '') {
+				return false;
+			}
+		}
+	});
+	jQuery("#novalnet_instalment_sepabirthdate").keydown(function() {
+		NovalnetUtility.isNumericBirthdate( this, event )
+	});
+	jQuery('#novalnet_instalment_sepa_new').click(function() {
+		jQuery('#instalment_sepa_save_card').show();
+		jQuery('#instalment_iban').show();
+		jQuery('#novalnet_instalment_sepa_iban_field').show();	
+		jQuery('#novalnet_instalment_sepa_iban_field').parents().eq(1).show();
+		jQuery('#novalnet_instalment_sepa_onclick').parents().eq(1).show();
+	});
+	jQuery('.novalnet_instalment_sepa_saved_acc').click(function() {
+		jQuery('#novalnet_instalment_sepa_iban_field').hide();
+		jQuery('#novalnet_instalment_sepa_iban').parents().eq(1).hide();
+		jQuery('#novalnet_instalment_sepa_onclick').parents().eq(1).hide();
+		jQuery('#instalment_iban').hide();
+	});
+	$('.instalment_token').click(function(){
+		var data_to_send = {'action': 'delete_token', 'id': this.id};
+		 $.ajax({
+			type : 'POST', 
+            url  : 'novalnet_token_delete.php',
+            data : data_to_send,
+            success: function(data){
+                location.reload();
+             }
+          });
+	});	
+}
+
+function validateDateFormat(e) {
+	if (!NovalnetUtility.validateDateFormat(e.value)) {
+        alert(jQuery('#nn_instalmentsepa_birthdate_error').val());
+    }
+}
+
+
