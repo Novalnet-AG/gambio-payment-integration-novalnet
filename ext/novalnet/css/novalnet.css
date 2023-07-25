@@ -1,0 +1,95 @@
+/**
+ * Novalnet payment module
+ *
+ * This script is used for Novalnet CSS adjustment
+ *
+ * @author     Novalnet AG
+ * @copyright  Copyright (c) Novalnet
+ * @license    https://www.novalnet.de/payment-plugins/kostenlos/lizenz
+ * @link       https://www.novalnet.de
+ *
+ * Script: novalnet.css
+ */
+.novalnet-test-mode {
+	position: relative;
+	background-color: #0080c9;
+	color: #fff;
+	padding: 10px 20px;
+	margin-bottom: 8px;
+	font-size: 10px;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	line-height: 0.8px;
+	border-radius: 0px 0px 5px 5px;
+	transition: transform 0.5s ease 0.5s;
+	animation: novalnet-test-mode-blinker 2s cubic-bezier(0.42, 0, 0.65, 0.99) infinite;
+	font-weight: bold;
+	float:right;
+}
+.novalnet-info-box {
+	position: relative;
+	width: 95%;
+	height: auto;
+	background: content-box;
+	font-size: 14px;
+	color: #333;
+	margin: 20px 0px;
+	padding: 1em;
+	border-left: 5px solid #0080c9;
+	box-shadow: 0 0 8px 0px rgb(0 0 0 / 40%);
+}
+@keyframes novalnet-test-mode-blinker {
+	50% {
+		opacity: 0;
+	}
+}
+
+.novalnet-info-box ul {
+	margin: 0 20px 0px 20px;
+	padding: 0;
+}
+.novalnet-info-box li {
+	list-style: disc !important;
+}
+.novalnet-info-box li:before {
+	display:block !important;
+}
+a::after {
+	box-sizing: border-box;
+}
+table#novalnet_instalment_invoice_table , table#novalnet_instalment_sepa_table {
+	padding : 10px;
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+table#novalnet_instalment_invoice_table td,table#novalnet_instalment_sepa_table td, table#novalnet_instalment_invoice_table th,table#novalnet_instalment_sepa_table th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+table#novalnet_instalment_invoice_table tr:nth-child(even),table#novalnet_instalment_sepa_table tr:nth-child(even) {
+	background-color: #dddddd;
+}
+.novalnet_cc img, .novalnet_online_bank_transfer img {
+	max-width: 60% !important;
+	height: 25px !important;
+}
+#nn_refund {
+    width: 100%;
+    height: 100%;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+}
+
+.gx-compatibility .order-details .head {
+    padding-bottom: 20px;
+    border-bottom: 3px solid #002337;
+    margin-bottom: 24px;
+}
