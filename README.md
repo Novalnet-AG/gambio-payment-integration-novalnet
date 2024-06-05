@@ -2,7 +2,7 @@
 <a href="https://www.novalnet.de/">Novalnet</a> payment module for gambio simplifies your daily work by automating the entire payment process, from checkout till collection. This module is designed to help you increase your sales by offering various payment methods on a one-page checkout. The module which is perfectly adjusted to the gambio shop with top-quality range of services of the payment provider.
 
 ## Gambio Module Integration Requirements
-<a href="https://www.novalnet.de/">Novalnet</a> merchant account is required for processing all international and local payments through this Gambio payment module. The module is available for Gambio versions: 4.2.0.0 to 4.9.3.0 in the following languages: <b>EN, DE</b>
+<a href="https://www.novalnet.de/">Novalnet</a> merchant account is required for processing all international and local payments through this Gambio payment module. The module is available for Gambio versions: 4.2.0.0 to 4.9.4.1 in the following languages: <b>EN, DE</b>
 
 Through the individuality and flexibility, you can choose which payment methods and services you need. Get now a seamless integration with the various types of payments and payment-related services integrated in the one unique platform.
 
@@ -29,7 +29,7 @@ Through the individuality and flexibility, you can choose which payment methods 
 * Find currently supported payment methods on https://www.novalnet.com/integration/gambio-gx2-payment-module/
 
 ## More information
-Find more about gambio module on: https://www.novalnet.de/site_pdf/Installation_Guide-gambio_4.2.0.0-4.9.3.0_novalnet_12.1.0.pdf<br>
+Find more about gambio module on: https://www.novalnet.de/site_pdf/Installation_Guide-gambio_4.2.0.0-4.9.4.1_novalnet_12.2.0.pdf<br>
 To test our demo shop, please visit: https://gambio.novalnet.de
 
 ## Documentation & Support
