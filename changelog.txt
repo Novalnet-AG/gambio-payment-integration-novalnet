@@ -1,6 +1,6 @@
 *** Changelog ***
 
-= 12.2.1  - 18.06.2024 =
+= 12.2.1  - 18.06.2024 = 
 * Fix     - An undefined error occurred while handling the zero amount feature for the Direct Debit ACH payment
 * Fix     - Installment cycle selection is not working correctly when selecting the edit button from the shop admin interface
 
