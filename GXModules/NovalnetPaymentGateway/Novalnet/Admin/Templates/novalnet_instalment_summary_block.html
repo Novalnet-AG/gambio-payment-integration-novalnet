@@ -1,0 +1,68 @@
+{load_language_text section="novalnet_payment"}
+
+{block name="novalnet_instalment_summary"}
+<!-- Display Instalment summary block -->
+<script >
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the script is already in the document
+    if (!document.getElementById('novalnet_extension_js')) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.id = 'novalnet_extension_js';
+        script.src = '{$novalnet_extension_js}'; // Replace with your actual URL or variable
+        document.head.appendChild(script);
+    }
+});
+</script>
+
+<div class="content article-table grid">
+    <div class="span12 remove-padding">
+        {if $instalmentCancel}
+            <br><button id="nn_instalment_cancel">{$txt.MODULE_PAYMENT_NOVALNET_INSTALMENT_CANCEL_ADMIN_TEXT}</button>
+        {/if}
+        
+        <div>
+            <form name="nn_instalment_cancel" action="{$novalnet_instalment_cancel_action}" method="post">
+                <div id="novalnet_instalment_cancel" style="display: none;">
+                    <input type="hidden" name="nn_insta_allcycles" value="{$txt.MODULE_PAYMENT_NOVALNET_ALLCYCLES_ERROR_MESSAGE}">
+                    <input type="hidden" name="nn_insta_remainingcycles" value="{$txt.MODULE_PAYMENT_NOVALNET_REMAINING_CYCLES_ERROR_MESSAGE}">
+                    <input type="hidden" name="novalnet_order_id" value="{$novalnet_order_id}">
+                    {if $instalmentCancelremaincycles}
+                        <input type="submit" name="nn_instacancel_remaincycles" id="nn_instacancel_remaincycles" {$instalmentCancel.nn_instacancel_remaining} value="{$txt.MODULE_PAYMENT_NOVALNET_INSTALMENT_CANCEL_REMAINING_CYCLES}">
+                    {/if}
+                    {if $instalmentCancelallcycles}
+                        <input type="submit" name="nn_instacancel_allcycles" id="nn_instacancel_allcycles" {$instalmentCancel.nn_instacancel_allcycles} value="{$txt.MODULE_PAYMENT_NOVALNET_INSTALMENT_CANCEL_ALLCYCLES}">
+                    {/if}
+                </div>
+            </form>
+        </div>
+        
+        <table class="text-center">
+            <tr id='instalment_headings'>
+                <td>{$txt.MODULE_PAYMENT_NOVALNET_INSTALMENT_SNO_BACKEND}</td>
+                <td>{$txt.MODULE_PAYMENT_NOVALNET_INSTALMENT_REFERENCE_BACKEND}</td>
+                <td>{$txt.MODULE_PAYMENT_NOVALNET_INSTALMENT_AMOUNT_BACKEND}</td>
+                <td>{$txt.MODULE_PAYMENT_NOVALNET_INSTALMENT_DATE_BACKEND}</td>
+                <td>{$txt.MODULE_PAYMENT_NOVALNET_INSTALMENT_STATUS_BACKEND}</td>
+                <td>{$txt.MODULE_PAYMENT_NOVALNET_INSTALMENT_REFUND_EXTENSION_BACKEND}</td>
+            </tr>
+            {foreach from=$instalment_details key=key item=instalment_details_data}
+                {assign var="status_label" value="MODULE_PAYMENT_NOVALNET_INSTALMENT_STATUS_"|cat:$instalment_details_data.status|upper}
+                <tr>
+                    <td>{$instalment_details_data.sno}</td>
+                    <td>{$instalment_details_data.reference_tid}</td>
+                    <td>{$instalment_details_data.formatted_amount}</td>
+                    <td>{$instalment_details_data.next_instalment_date}</td>
+                    <td>{$txt.{$status_label}}</td>
+                    <td>
+                        {if $instalment_details_data.reference_tid && $instalment_details_data.cycle_amount > 0 && $instalment_details_data.status == 'Paid'}
+                            {include file="./novalnet_instalment_refund_block.html"}
+                            <button id="nn_refund1" onclick="novalnetRefundbuttonsHandler()">{$txt.MODULE_PAYMENT_NOVALNET_REFUND_TEXT}</button>
+                        {/if}
+                    </td>
+                </tr>
+            {/foreach}
+        </table>
+    </div>
+</div>
+{/block}

@@ -1,0 +1,12 @@
+{block name="product_info_product_box_bottom_add_to_cart" append}
+    <script src="https://cdn.novalnet.de/js/v3/payment.js"></script>
+    <script type="text/javascript" integrity="sha384-WBLQQbJSUhYZ0rxqvy+6tnyCG9Co3Z3eg8GVoaUVWty4LTlEWKL7c/pe9+LjY++h" src="{$NOVALNET_WALLET_SCRIPT}"></script>
+    <div class="button-container">
+	{if $NOVALNET_APPLEPAY_AVAILABLE }
+		<div id="novalnet_applepay_wall_button" data-pageType="productDetail" data-paymentName="novalnet_applepay" data-applepayminAmount="{$NOVALNET_APPLEPAY_VISIBILITY_BY_AMOUNT}" data-walletPayParams="{$NOVALNET_APPLEPAY_PARAMETERS}" style="margin: 10px 0;"></div>
+	{/if}
+	{if $NOVALNET_GOOGLEPAY_AVAILABLE }
+		<div id="novalnet_googlepay_wall_button" data-pageType="productDetail" data-paymentName="novalnet_googlepay" data-googlepayminAmount="{$NOVALNET_GOOGLEPAY_VISIBILITY_BY_AMOUNT}" data-walletPayParams="{$NOVALNET_GOOGLEPAY_PARAMETERS}" style="margin: 10px 0;"></div>
+	{/if}
+    </div>
+{/block}

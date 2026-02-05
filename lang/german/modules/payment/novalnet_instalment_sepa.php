@@ -1,0 +1,35 @@
+<?php
+
+require_once dirname(__FILE__).'/novalnet.php';
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TEXT_TITLE', 'Novalnet Ratenzahlung per SEPA-Lastschrift');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_BASIC_REQ_TITLE', '<h2>Grundanforderungen: </h2>Erlaubte B2B-Länder: Europäische Union, Schweiz<br>Erlaubte B2C-Länder: Deutschland, Österreich, Schweiz<br>Erlaubte Währung: €<br> Mindestbestellwert: 19,98 €<br>Bitte beachten Sie, dass der Betrag einer Rate mindestens 9.99 EUR betragen muss und Raten, die diese Kriterien nicht erfüllen, nicht im Ratenplan angezeigt werden<br>Mindestalter: 18 Jahre oder mehr<br> Rechnungsadresse und Lieferadresse müssen übereinstimmen<br>');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_STATUS_TITLE', 'Zahlungsart aktivieren');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_STATUS_DESC', 'Möchten Sie eine Ratenzahlung per Sepa akzeptieren?');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TEST_MODE_TITLE', 'Testmodus aktivieren');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TEST_MODE_DESC', 'Die Zahlung wird im Testmodus durchgeführt, daher wird der Betrag für diese Transaktion nicht eingezogen.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_SORT_ORDER_TITLE', 'Sortierreihenfolge anzeigen');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_SORT_ORDER_DESC', 'Sortierreihenfolge anzeigen; der niedrigste Wert wird zuerst angezeigt.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ORDER_STATUS_TITLE', 'Status für erfolgreichen Auftragsabschluss');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ORDER_STATUS_DESC', 'Status, der für erfolgreiche Bestellungen zu verwenden ist');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_PAYMENT_ZONE_TITLE', 'Zahlungsbereich');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_PAYMENT_ZONE_DESC', 'Wenn eine Zone ausgewählt wird, wird diese Zahlungsmethode nur für diese Zone aktiviert.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_MINIMUM_ORDER_AMOUNT_TITLE', 'Mindestbestellbetrag');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_MINIMUM_ORDER_AMOUNT_DESC', 'Mindestbestellsumme zur Anzeige der ausgewählten Zahlungsart(en) im Checkout (in der kleinsten Währungseinheit, z.B. 100 Cent = entsprechen 1.00 EUR)');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_DESC', '&nbsp;');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ALLOW_B2B_TITLE', 'B2B-Kunden erlauben');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ALLOW_B2B_DESC', 'B2B-Kunden erlauben, Bestellungen aufzugeben');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_AUTHENTICATE_TITLE', 'Aktion für vom Besteller autorisierte Zahlungen.');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_AUTHENTICATE_DESC', 'Wählen Sie, ob die Zahlung sofort belastet werden soll oder nicht. Authorize prüft die Zahlungsdetails und reserviert Mittel, um sie später zu erfassen, damit der Händler Zeit hat, über die Bestellung zu entscheiden.</br></br> Zahlung autorisieren');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_MANUAL_CHECK_LIMIT_TITLE', 'Mindesttransaktionsbetrag für die Autorisierung');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_MANUAL_CHECK_LIMIT_DESC', 'Übersteigt der Bestellbetrag das genannte Limit, wird die Transaktion, bis zu ihrer Bestätigung durch Sie, auf on hold gesetzt. Sie können das Feld leer lassen, wenn Sie möchten, dass alle Transaktionen als on hold behandelt werden. (in der kleinsten Währungseinheit, z.B. 100 Cent = entsprechen 1.00 EUR).');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_CYCLE_TITLE', 'Anzahl der Raten');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_CYCLE_DESC', 'Wählen Sie die zeitliche Abfolge der Raten für den Ratenzahlungsplan');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TOKENIZATION_TITLE', 'Kauf mit einem Klick');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TOKENIZATION_DESC', 'Zahlungsdaten, die während des Bestellvorgangs gespeichert werden, können für zukünftige Zahlungen verwendet werden');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_SAVE_CARD_DETAILS', 'Ich möchte meine Kontodaten für spätere Einkäufe speichern');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_NEW_ACCOUNT_DETAILS', 'Neue Kontodaten hinzufügen');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ENDCUSTOMER_INFO_TITLE', 'Benachrichtigung des Käufers');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ENDCUSTOMER_INFO_DESC', 'Der eingegebene Text wird auf der Kassenseite angezeigt');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_FORM_MANDATE_CONFIRM_TEXT', '<a class="about_mandate" style="cursor:pointer; color:#0080c9;">Ich erteile hiermit das SEPA-Lastschriftmandat (elektronische Übermittlung) und bestätige, dass die Bankverbindung korrekt ist</a>');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_ABOUT_MANDATE_TEXT', '<div class="mandate_confirm" style="display: none;"><br>Ich ermächtige den Zahlungsempfänger, Zahlungen von meinem Konto mittels Lastschrift einzuziehen. Zugleich weise ich mein Kreditinstitut an, die von dem Zahlungsempfänger auf mein Konto gezogenen Lastschriften einzulösen.</br><strong>Gläubiger-Identifikator: DE53ZZZ00000004253</strong></br>Hinweis:</br> Ich kann innerhalb von acht Wochen, beginnend mit dem Belastungsdatum, die Erstattung des belasteten Betrages verlangen. Es gelten dabei die mit meinem Kreditinstitut vereinbarten Bedingungen.</div>');
+define('MODULE_PAYMENT_NOVALNET_INSTALMENT_SEPA_TEXT_INFO', 'Der Betrag wird durch Novalnet von Ihrem Konto abgebucht');
