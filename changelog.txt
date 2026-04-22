@@ -1,8 +1,8 @@
 *** Changelog ***
 
 = 12.4.1   - 22.04.2026 =
-* Fix      - During communication failures, the "From" address in admin order confirmation emails now uses the admin email instead of the customer email
-* Enhanced - Added "Allowed zone(-s)" configuration for all payments
+* Fix      - The order confirmation email now uses the admin email address as the sender instead of the customer email address for network failure payments
+* Enhanced - Enabled an Allowed zone configuration for all payment methods
 * Enhanced - iDEAL payment logo and title to iDEAL | Wero	
 * Removed  - Payconiq payment
 
