@@ -1,0 +1,48 @@
+{load_language_text section="novalnet_payment"}
+
+{block name="novalnet_authorization_block"}
+<!--  Transaction management block  -->
+<script >
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the script is already in the document
+    if (!document.getElementById('novalnet_extension_js')) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.id = 'novalnet_extension_js';
+        script.src = '{$novalnet_extension_js}'; // Replace with your actual URL or variable
+        document.head.appendChild(script);
+    }
+});
+</script>
+
+<div class="content article-table grid">
+    <div class="span12 remove-padding">
+		<form name="novalnet_status_change" action="{$novalnet_authorization_action}" method="post">
+            <input type="hidden" name="novalnet_order_id" value="{$novalnet_order_id}">
+            <input type="hidden" name="nn_capture_update" value="{$txt.MODULE_PAYMENT_NOVALNET_PAYMENT_CAPTURE_CONFIRM}">
+            <input type="hidden" name="nn_void_update" value="{$txt.MODULE_PAYMENT_NOVALNET_PAYMENT_VOID_CONFIRM}">
+            <table>
+                <tr>
+                    <td>
+                        {$txt.MODULE_PAYMENT_NOVALNET_SELECT_STATUS_TEXT}
+                    </td>
+                    <td>
+                        <select name="trans_status" style="width: 100%;">
+                            <option value="">{$txt.MODULE_PAYMENT_NOVALNET_SELECT_STATUS_OPTION}</option>
+                            <option value="CONFIRM">{$txt.MODULE_PAYMENT_NOVALNET_CONFIRM_TEXT}</option>
+                            <option value="CANCEL">{$txt.MODULE_PAYMENT_NOVALNET_CANCEL_TEXT}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 50%;">
+                        <input type="submit" name="nn_manage_confirm" value="{$txt.MODULE_PAYMENT_NOVALNET_CONFIRM_TEXT}" onclick="return void_capture_status();" style="float:left;margin-left: 0px;">
+                        <a class="button" style="float:left" href="{$orders_link}">{$txt.MODULE_PAYMENT_NOVALNET_BACK_TEXT}</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+{/block}

@@ -1,0 +1,33 @@
+<?php
+
+$t_language_text_section_content_array = array
+(
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TEXT_TITLE' => 'Novalnet Direct Debit ACH',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TEXT_DESC' => 'The payment will be processed in the test mode therefore amount for this transaction will not be charged',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_STATUS_TITLE' => 'Enable payment method',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_STATUS_DESC' => 'Do you want to accept Direct Debit ACH payment?',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TEST_MODE_TITLE' => 'Enable test mode',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TEST_MODE_DESC' => 'The payment will be processed in the test mode therefore amount for this transaction will not be charged',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_SORT_ORDER_TITLE' => 'Display Sort Order',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_SORT_ORDER_DESC' => 'Display sort order; the lowest value is displayed first.',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ORDER_STATUS_TITLE' => 'Completed order status',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ORDER_STATUS_DESC' => 'Status to be used for successful orders',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_PAYMENT_ZONE_TITLE' => 'Payment zone',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_PAYMENT_ZONE_DESC' => 'When a zone is selected, this payment method will be enabled for that zone only.',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TOKENIZATION_TITLE' => 'One click shopping',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TOKENIZATION_DESC' => 'Payment details stored during the checkout process can be used for future payments',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_AUTHENTICATE_TITLE' => 'Payment action',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_AUTHENTICATE_DESC' => 'Choose whether or not the payment should be charged immediately. Authorize verifies payment details and reserves funds to capture it later, giving time for the merchant to decide on the order.</br></br>Authorize with zero amount',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_VISIBILITY_BY_AMOUNT_TITLE' => 'Minimum order amount.',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_VISIBILITY_BY_AMOUNT_DESC' => 'Minimum order amount to display the selected payment method (s) at during checkout (in minimum unit of currency. E.g. enter 100 which is equal to 1.00)',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ENDCUSTOMER_INFO_TITLE' => 'Notification for the buyer.',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ENDCUSTOMER_INFO_DESC' => 'The entered text will be displayed on the checkout page.',
+    'ACCOUNT_NO_ACH' => 'Account number',
+    'ROUTING_NO_ACH' => 'Routing number (ABA)',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TEXT_INFO' => 'Your account will be debited after you submit your order.',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ACCOUNT_NO' => 'Account number *',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ROUTING_NO' => 'Routing number (ABA)*',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_NEW_ACCOUNT_DETAILS' => 'Add new account details',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ALLOWED_TITLE' => 'Allowed zone(-s)',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ALLOWED_DESC' => 'This payment method will be allowed for the mentioned zone(-s). Enter the zone(-s) in the following format E.g: DE, AT, CH. In case if the field is empty, all the zones will be allowed.',
+);

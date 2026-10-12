@@ -1,0 +1,75 @@
+<?php
+
+$t_language_text_section_content_array = array
+(
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_TEXT_TITLE' => 'Novalnet Googlepay',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_TEXT_DESC' => 'Die Zahlung wird im Testmodus verarbeitet, daher wird der Betrag für diese Transaktion nicht berechnet.', 
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_STATUS_TITLE' => 'Aktivieren der Zahlungsmethode',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BLOCK_TITLE' => 'Googlepay-Konfiguration',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_STATUS_DESC' => 'Möchten Sie Googlepay-Zahlungen akzeptieren?',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_TEST_MODE_TITLE' => 'Testmodus aktivieren',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_TEST_MODE_DESC' => 'Die Zahlung wird im Testmodus verarbeitet, daher wird der Betrag für diese Transaktion nicht berechnet.',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_ORDER_STATUS_TITLE' => 'Status für erfolgreichen Auftragsabschluss',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_ORDER_STATUS_DESC' => 'Status, der für erfolgreiche Bestellungen zu verwenden ist',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_SORT_ORDER_TITLE' => 'Sortierreihenfolge anzeigen',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_SORT_ORDER_DESC' => 'Sortierreihenfolge anzeigen; der niedrigste Wert wird zuerst angezeigt.',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_AUTHENTICATE_TITLE' => 'Aktion für vom Besteller autorisierte Zahlungen',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_AUTHENTICATE_DESC' => 'Wählen Sie, ob die Zahlung sofort belastet werden soll oder nicht.',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_MANUAL_CHECK_LIMIT_TITLE' => 'Mindesttransaktionsbetrag für die Autorisierung',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_MANUAL_CHECK_LIMIT_DESC' => 'Übersteigt der Bestellbetrag das genannte Limit, wird die Transaktion, bis zu ihrer Bestätigung durch Sie, auf on hold gesetzt. Sie können das Feld leer lassen, wenn Sie möchten, dass alle Transaktionen als on hold behandelt werden.  (in der kleinsten Währungseinheit, z.B. 100 Cent = entsprechen 1.00 EUR).',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BUTTON_TYPE_TITLE' => 'Button-Design',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BUTTON_TYPE_DESC' => 'Stil für Google Pay Schaltfläche',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BUTTON_THEME_TITLE' => 'Button-Farbe',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BUTTON_HEIGHT_TITLE' => 'Button-Höhe',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BUTTON_HEIGHT_DESC' => 'zwischen 30 und 64 Pixel',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BUTTON_DISPLAY_TITLE' => 'Google-Pay-Button anzeigen auf',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BUTTON_DISPLAY_DESC' => 'Auf den ausgewählten Seiten wird die Google-Pay-Schaltfläche zur sofortigen Bezahlung als Express-Checkout-Schaltfläche angezeigt <br><br>',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_PAYMENT_ZONE_TITLE' => 'Zahlungsbereich',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_PAYMENT_ZONE_DESC' => 'Wenn eine Zone ausgewählt ist, aktivieren Sie diese Zahlungsmethode nur für diese Zone.',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_TEXT_INFO' => 'Der Betrag wird nach erfolgreicher Authentifizierung von Ihrer Karte abgebucht',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_PUBLIC_TITLE' => xtc_image(DIR_WS_ICONS.'novalnet/novalnet_googlepay.png', "Googlepay "),
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_VISIBILITY_BY_AMOUNT_TITLE' => 'Mindestbestellbetrag',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_VISIBILITY_BY_AMOUNT_DESC' => 'Mindestbestellsumme zur Anzeige der ausgewählten Zahlungsart(en) im Checkout (in der kleinsten Währungseinheit, z.B. 100 Cent = entsprechen 1.00 EUR)',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_ENDCUSTOMER_INFO_TITLE' => 'Benachrichtigung des Käufers',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_ENDCUSTOMER_INFO_DESC' => 'Der eingegebene Text wird auf der Kassenseite angezeigt',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BUSINESS_NAME_TITLE' => 'Name des Geschäfts',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BUSINESS_NAME_DESC' => 'Der Name des Geschäfts wird in den Zahlungsbeleg von Google Pay eingefügt und der Text wird als PAY \'Name des Geschäfts\' angezeigt, so dass der Endkunde weiß, an wen er zahlt.',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_ENFORCE_3D_SECCURE_TITLE' => '3D-Secure-Zahlungen außerhalb der EU erzwingen',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_ENFORCE_3D_SECCURE_DESC' => 'Wenn Sie diese Option aktivieren, werden alle Zahlungen mit Karten, die außerhalb der EU ausgegeben wurden, mit der starken Kundenauthentifizierung (Strong Customer Authentication, SCA) von 3D-Secure 2.0 authentifiziert.',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_MERCHANT_ID_TITLE' => 'Google-Händler-ID',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_MERCHANT_ID_DESC' => 'Beachten Sie bitte, dass die Händler-ID von Google für die Ausführung dieser Zahlungsart in der Live-Umgebung benötigt wird. Die Händler-ID wird nach der Registrierung bei <a href=https://pay.google.com/business/console/ target=_blank>Google Pay und der Wallet-Konsole</a> vergeben. Siehe auch: <a href=https://developers.google.com/pay/api/web/guides/test-and-deploy/request-prod-access target=_blank>Anfrage für Produktiv-Zugang stellen</a>, falls Sie mehr Informationen zum Genehmigungsverfahren benötigen und dazu, wie Sie eine Google Händler-ID erhalten. Die Registrierung beinhaltet auch, dass Sie Ihre Anbindung mit ausreichenden Screenshots einreichen, deshalb sammeln Sie diese Informationen, indem Sie die Zahlungsmethode im Testmodus aktivieren. Um die Validierung dieses Feldes zu überspringen, während Sie die Konfiguration speichern, verwenden Sie diese Test-ID, BCR2DN4XXXTN7FSI , zum Testen und Einreichen Ihrer Anbindung bei Google.',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_DISPLAY_CARTPAGE' => 'Warenkorb',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_DISPLAY_PRODUCTPAGE' => 'Produktseite',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_DISPLAY_CHECKOUTPAGE' => 'Checkout-Seite',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_PLAIN' => 'Einfach',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BUY' => 'Kaufen',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_DONATE' => 'Spenden',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BOOK' => 'Buchen',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_CHECKOUT' => 'Checkout',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_ORDER' => 'Bestellen',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_SUBSCRIBE' => 'Abonnieren',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_PAY' => 'Bezahlen',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_ESTIMATEDTOTAL_LABEL' => 'Geschätzter Gesamtbetrag (Keine Angebote angewendet)',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_TOTAL_LABEL' => 'Insgesamt',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_INCL_TAX_LABEL' => 'Inkl Steuer',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_EXCL_TAX_LABEL' => 'Exkl Steuer',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_DISCOUNT_AND_GIFT_VOUCHER_LABEL' => 'Rabatt',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_SHIPPING_LABEL' => 'Versand',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BUTTON_PAGES_TEXT' => 'Buttton-Anzeigeseiten',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_ALLOWED_TITLE' => 'Erlaubte Zone(n)',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_ALLOWED_DESC' => 'Diese Zahlungsmethode ist nur für die angegebene(n) Zone(n) zulässig. Geben Sie die Zone(n) in folgendem Format ein, z.B: DE, AT, CH. Wenn das Feld leer ist, werden alle Zonen zugelassen.',
+
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_CONDITION_ERROR' => 
+        '* Sofern Sie unsere Allgemeinen Geschäftsbedingungen nicht akzeptieren, können wir Ihre Bestellung leider nicht entgegennehmen!',
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_WITHDRAWAL_ERROR' =>
+        '* Sofern Sie unser Widerrufsrecht nicht akzeptieren, können wir Ihre Bestellung leider nicht entgegennehmen!', 
+        
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BOTH_ERROR' =>
+        '* Sofern Sie unsere Allgemeinen Geschäftsbedingungen und unser Widerrufsrecht nicht akzeptieren, können wir Ihre Bestellung leider nicht entgegennehmen!',
+
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_BILLING_ERROR' => 
+        'Die ausgewählte Rechnungsadresse ist unvollständig. Bitte aktualisieren Sie die Adresse.',   
+
+    'MODULE_PAYMENT_NOVALNET_GOOGLEPAY_SHIPPING_ERROR' =>
+        'Die ausgewählte Lieferadresse ist unvollständig. Bitte aktualisieren Sie die Adresse.',    
+);

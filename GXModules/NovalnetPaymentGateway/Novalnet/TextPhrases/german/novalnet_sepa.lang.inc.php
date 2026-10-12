@@ -1,0 +1,37 @@
+<?php
+
+$t_language_text_section_content_array = array
+(
+    'MODULE_PAYMENT_NOVALNET_SEPA_TEXT_TITLE' => 'Novalnet SEPA-Lastschrift ',
+    'MODULE_PAYMENT_NOVALNET_SEPA_TEXT_DESC' => 'Die Zahlung wird im Testmodus durchgeführt, daher wird der Betrag für diese Transaktion nicht eingezogen.',
+    'MODULE_PAYMENT_NOVALNET_SEPA_STATUS_TITLE' => 'Zahlungsart aktivieren',
+    'MODULE_PAYMENT_NOVALNET_SEPA_STATUS_DESC' => 'Möchten Sie Sepa-Zahlungen akzeptieren?',
+    'MODULE_PAYMENT_NOVALNET_SEPA_TEST_MODE_TITLE' => 'Testmodus aktivieren',
+    'MODULE_PAYMENT_NOVALNET_SEPA_TEST_MODE_DESC' => 'Die Zahlung wird im Testmodus durchgeführt, daher wird der Betrag für diese Transaktion nicht eingezogen.',
+    'MODULE_PAYMENT_NOVALNET_SEPA_DUE_DATE_TITLE' => 'Fälligkeitsdatum (in Tagen)',
+    'MODULE_PAYMENT_NOVALNET_SEPA_DUE_DATE_DESC' => 'Geben Sie die Anzahl der Tage ein, nach denen der Zahlungsbetrag eingezogen werden soll (muss zwischen 3 und 14 Tagen liegen) ',
+    'MODULE_PAYMENT_NOVALNET_SEPA_SORT_ORDER_TITLE' => 'Sortierreihenfolge anzeigen',
+    'MODULE_PAYMENT_NOVALNET_SEPA_SORT_ORDER_DESC' => 'Sortierreihenfolge anzeigen; der niedrigste Wert wird zuerst angezeigt.',
+    'MODULE_PAYMENT_NOVALNET_SEPA_ORDER_STATUS_TITLE' => 'Status für erfolgreichen Auftragsabschluss',
+    'MODULE_PAYMENT_NOVALNET_SEPA_ORDER_STATUS_DESC' => 'Status, der für erfolgreiche Bestellungen zu verwenden ist',
+    'MODULE_PAYMENT_NOVALNET_SEPA_PAYMENT_ZONE_TITLE' => 'Zahlungsbereich',
+    'MODULE_PAYMENT_NOVALNET_SEPA_PAYMENT_ZONE_DESC' => 'Wenn eine Zone ausgewählt wird, wird diese Zahlungsmethode nur für diese Zone aktiviert.',
+    'MODULE_PAYMENT_NOVALNET_SEPA_ACCOUNT_HOLDER' => 'Kontoinhaber',
+    'MODULE_PAYMENT_NOVALNET_SEPA_AUTHENTICATE_TITLE' => 'Aktion für vom Besteller autorisierte Zahlungen.',
+    'MODULE_PAYMENT_NOVALNET_SEPA_AUTHENTICATE_DESC' => 'Wählen Sie, ob die Zahlung sofort belastet werden soll oder nicht.',
+    'MODULE_PAYMENT_NOVALNET_SEPA_MANUAL_CHECK_LIMIT_TITLE' => 'Mindesttransaktionsbetrag für die Autorisierung',
+    'MODULE_PAYMENT_NOVALNET_SEPA_MANUAL_CHECK_LIMIT_DESC' => 'Übersteigt der Bestellbetrag das genannte Limit, wird die Transaktion, bis zu ihrer Bestätigung durch Sie, auf on hold gesetzt. Sie können das Feld leer lassen, wenn Sie möchten, dass alle Transaktionen als on hold behandelt werden.  (in der kleinsten Währungseinheit, z.B. 100 Cent = entsprechen 1.00 EUR).',
+    'MODULE_PAYMENT_NOVALNET_SEPA_TOKENIZATION_TITLE' => 'Kauf mit einem Klick',
+    'MODULE_PAYMENT_NOVALNET_SEPA_TOKENIZATION_DESC' => 'Zahlungsdaten, die während des Bestellvorgangs gespeichert werden, können für zukünftige Zahlungen verwendet werden',
+    'MODULE_PAYMENT_NOVALNET_SEPA_VISIBILITY_BY_AMOUNT_TITLE' => 'Mindestbestellbetrag',
+    'MODULE_PAYMENT_NOVALNET_SEPA_VISIBILITY_BY_AMOUNT_DESC' => 'Mindestbestellsumme zur Anzeige der ausgewählten Zahlungsart(en) im Checkout (in der kleinsten Währungseinheit, z.B. 100 Cent = entsprechen 1.00 EUR)',
+    'MODULE_PAYMENT_NOVALNET_SEPA_ENDCUSTOMER_INFO_TITLE' => 'Benachrichtigung des Käufers.',
+    'MODULE_PAYMENT_NOVALNET_SEPA_ENDCUSTOMER_INFO_DESC' => 'Der eingegebene Text wird auf der Kassenseite angezeigt.',
+    'MODULE_PAYMENT_NOVALNET_SEPA_DESC' => 'Der Betrag wird von Novalnet von Ihrem Konto abgebucht.',
+    'MODULE_PAYMENT_NOVALNET_SEPA_FORM_MANDATE_CONFIRM_TEXT' => '<a class="about_mandate" style="cursor:pointer; color:#0080c9;">Ich erteile hiermit das SEPA-Lastschriftmandat (elektronische Übermittlung) und bestätige, dass die Bankverbindung korrekt ist</a>',
+    'MODULE_PAYMENT_NOVALNET_SEPA_ABOUT_MANDATE_TEXT' => '<div class="mandate_confirm" style="display: none;"><br>Ich ermächtige den Zahlungsempfänger, Zahlungen von meinem Konto mittels Lastschrift einzuziehen. Zugleich weise ich mein Kreditinstitut an, die von dem Zahlungsempfänger auf mein Konto gezogenen Lastschriften einzulösen.</br><strong>Gläubiger-Identifikator: DE53ZZZ00000004253</strong></br>Hinweis:</br> Ich kann innerhalb von acht Wochen, beginnend mit dem Belastungsdatum, die Erstattung des belasteten Betrages verlangen. Es gelten dabei die mit meinem Kreditinstitut vereinbarten Bedingungen.</div>',
+    'MODULE_PAYMENT_NOVALNET_SEPA_TEXT_INFO' => 'Der Betrag wird durch Novalnet von Ihrem Konto abgebucht',
+    'MODULE_PAYMENT_NOVALNET_SEPA_ALLOWED_TITLE' => 'Erlaubte Zone(n)',
+    'MODULE_PAYMENT_NOVALNET_SEPA_ALLOWED_DESC' => 'Diese Zahlungsmethode ist nur für die angegebene(n) Zone(n) zulässig. Geben Sie die Zone(n) in folgendem Format ein, z.B: DE, AT, CH. Wenn das Feld leer ist, werden alle Zonen zugelassen..',
+);
+  

@@ -1,0 +1,33 @@
+<?php
+
+$t_language_text_section_content_array = array
+(
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TEXT_TITLE' => 'Novalnet Lastschrift ACH',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TEXT_DESC' => 'Die Zahlung wird im Testmodus verarbeitet, daher wird der Betrag für diese Transaktion nicht berechnet.',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_STATUS_TITLE' => 'Aktivieren der Zahlungsmethode',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_STATUS_DESC' => 'Möchten Sie ACH-Zahlungen per Lastschrift akzeptieren?',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TEST_MODE_TITLE' => 'Testmodus einschalten',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TEST_MODE_DESC' => 'Die Zahlung wird im Testmodus verarbeitet, daher wird der Betrag für diese Transaktion nicht berechnet.',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_SORT_ORDER_TITLE' => 'Sortierreihenfolge anzeigen',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_SORT_ORDER_DESC' => 'Sortierreihenfolge anzeigen; der niedrigste Wert wird zuerst angezeigt.',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ORDER_STATUS_TITLE' => 'Status der abgeschlossenen Bestellung',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ORDER_STATUS_DESC' => 'Status, der für erfolgreiche Bestellungen zu verwenden ist',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_PAYMENT_ZONE_TITLE' => 'Zahlungsbereich',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_PAYMENT_ZONE_DESC' => 'Wenn eine Zone ausgewählt wird, wird diese Zahlungsmethode nur für diese Zone aktiviert.',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TOKENIZATION_TITLE' => 'Einkaufen mit einem Klick',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TOKENIZATION_DESC' => 'Die während des Bezahlvorgangs gespeicherten Zahlungsdaten können für zukünftige Zahlungen verwendet werden.',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_AUTHENTICATE_TITLE' => 'Aktion für vom Besteller autorisierte Zahlungen',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_AUTHENTICATE_DESC' => 'Wählen Sie, ob die Zahlung sofort belastet werden soll oder nicht. Authorize prüft die Zahlungsdetails und reserviert Mittel, um sie später zu erfassen, damit der Händler Zeit hat, über die Bestellung zu entscheiden.</br></br> Mit Nullbetrag autorisieren',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_VISIBILITY_BY_AMOUNT_TITLE' => 'Mindestbestellwert.',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_VISIBILITY_BY_AMOUNT_DESC' => 'Mindestbestellwert, bei dem die gewählte(n) Zahlungsmethode(n) während des Bezahlvorgangs angezeigt werden soll(en) (in der Mindestwährungseinheit. z.B. 100 eingeben, was 1,00 entspricht)',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ENDCUSTOMER_INFO_TITLE' => 'Benachrichtigung des Käufers.',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ENDCUSTOMER_INFO_DESC' => 'Der eingegebene Text wird auf der Kassenseite angezeigt.',
+    'ACCOUNT_NO_ACH' => 'Kontonummer',
+    'ROUTING_NO_ACH' => 'Routing-Nummer (ABA)',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_TEXT_INFO' => 'Die Belastung Ihres Kontos erfolgt nach Absenden Ihrer Bestellung.',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ACCOUNT_NO' => 'Kontonummer *',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ROUTING_NO' => 'Routing-Nummer (ABA)*',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_NEW_ACCOUNT_DETAILS' => 'Neue Kontodaten hinzufügen',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ALLOWED_TITLE' => 'Erlaubte Zone(n)',
+    'MODULE_PAYMENT_NOVALNET_DIRECT_DEBIT_ACH_ALLOWED_DESC' => 'Diese Zahlungsmethode ist nur für die angegebene(n) Zone(n) zulässig. Geben Sie die Zone(n) in folgendem Format ein, z.B: DE, AT, CH. Wenn das Feld leer ist, werden alle Zonen zugelassen.',
+);

@@ -1,0 +1,106 @@
+{load_language_text section="novalnet_payment"}
+
+{block name="novalnet_instalment_refund_block"}
+<!-- Display refund block -->
+<script >
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the script is already in the document
+    if (!document.getElementById('novalnet_extension_js')) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.id = 'novalnet_extension_js';
+        script.src = '{$novalnet_extension_js}'; // Replace with your actual URL or variable
+        document.head.appendChild(script);
+    }
+});
+</script>
+
+{literal}
+<script>
+    function novalnetRefundbuttonsHandler() {
+        // Show the modal
+        const modal = document.getElementById('nn_refund_modal');
+        modal.style.display = 'block';
+    }
+    
+    function closeModal() {
+        // Hide the modal
+        const modal = document.getElementById('nn_refund_modal');
+        modal.style.display = 'none';
+    }
+</script>
+<style>
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+</style>
+{/literal}
+
+<!-- The Modal -->
+<div id="nn_refund_modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>{$txt.MODULE_PAYMENT_NOVALNET_REFUND_TITLE}</h2>
+    <form id="nn_instalment_refund_form" method="post" action="{$novalnet_refund_action}">
+        <table class="text-justify">
+                <input type="hidden" name="novalnet_order_id" value="{$novalnet_order_id}">
+                <input type="hidden" name="refund_tid" value="{$instalment_details_data.reference_tid}">
+                <input type="hidden" name="instalment_cycle" value="{$key}">
+                <input type="hidden" name="instalment_cycle_amount" value="{$instalment_details_data.instalment_cycle_amount}">
+
+                <tr>
+                    <td>
+                        {$txt.MODULE_PAYMENT_NOVALNET_REFUND_AMT_TITLE}
+                        {assign var="cycle_amount" value=$instalment_details_data['show_refund_val']}
+                        <input type="text" name="refund_trans_amount" id="refund_trans_amount" value="{$cycle_amount}" style="width:100px;margin:0 0 0 1%;" autocomplete="off">
+                        {$txt.MODULE_PAYMENT_NOVALNET_AMOUNT_EX}
+                        <span id="nn_error_message" style="color: red; display: none;">{$txt.MODULE_PAYMENT_NOVALNET_REFUND_AMT_EXCEED_ERROR}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {$txt.MODULE_PAYMENT_NOVALNET_REFUND_REASON_TITLE}
+                        <input type="text" name="refund_reason" id="refund_reason" value="" style="margin:0 0 0 1%;" autocomplete="off">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="nn_refund_confirm" value="{$txt.MODULE_PAYMENT_NOVALNET_CONFIRM_TEXT}" onclick="return refund_amount_validation();" style="float:left;margin-left: 0px;">
+                        <a class="button" style="float:left" href="orders.php?oID={$novalnet_order_id}&action=edit">{$txt.MODULE_PAYMENT_NOVALNET_INSTALMENT_CANCEL_TEXT}</a>
+                    </td>
+                </tr>
+        </table>
+    </form>
+  </div>
+</div>
+{/block}

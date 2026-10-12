@@ -1,0 +1,16 @@
+{block name="account_history_info_billing_method_text"}
+    {if $PAYMENT_METHOD && $PAYMENT_METHOD|strpos:"Novalnet" !== false}
+        {$PAYMENT_METHOD|replace:"Novalnet":""|trim}
+    {else}
+        {$smarty.block.parent}
+    {/if}
+{/block}
+
+{block name="account_history_info_history_comment"}
+    {if $PAYMENT_METHOD && $PAYMENT_METHOD|strpos:"Novalnet" !== false}
+        <br />
+        {$history_item.comments|unescape:'html'|nl2br}
+    {else}
+        {$smarty.block.parent}
+    {/if}
+{/block}

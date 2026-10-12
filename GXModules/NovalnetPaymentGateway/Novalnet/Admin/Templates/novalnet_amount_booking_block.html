@@ -1,0 +1,45 @@
+{load_language_text section="novalnet_payment"}
+
+{block name="novalnet_amount_booking_block"}
+<!-- Display zero amount booking block -->
+<script >
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the script is already in the document
+    if (!document.getElementById('novalnet_extension_js')) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.id = 'novalnet_extension_js';
+        script.src = '{$novalnet_extension_js}'; // Replace with your actual URL or variable
+        document.head.appendChild(script);
+    }
+});
+</script>
+
+<div class="content article-table grid">
+    <div class="span12 remove-padding">
+        <form name="novalnet_book_amount" action="{$novalnet_amount_booking_action}" method="post">
+            <label> {$txt.MODULE_PAYMENT_NOVALNET_TRANSACTION_ID}{$transaction_details.tid} </label>
+            <input type="hidden" name="novalnet_order_id" value="{$novalnet_order_id}">
+            <input type="hidden" name="nn_zero_amount_book_confirm" value="{$txt.MODULE_PAYMENT_NOVALNET_PAYMENT_ZERO_AMOUNT_BOOK_CONFIRM}">
+            <input type="hidden" name="nn_amount_error" value="{$txt.MODULE_PAYMENT_NOVALNET_AMOUNT_ERROR_MESSAGE}">
+            <table>
+                <tr>
+                    <td>
+                        {$txt.MODULE_PAYMENT_NOVALNET_BOOK_AMT_TITLE}
+                        <input type="text" name="book_amount" id="book_amount" value="{$order_total}" autocomplete="off" style="margin:0% 0% 0% 2%" />
+                        {$txt.MODULE_PAYMENT_NOVALNET_AMOUNT_EX}
+                    </td>
+                </tr>
+                <br>
+                <span id="nn_zero_amount_error" style="color:red"></span>
+                <tr>
+                    <td>
+                        <input type="submit" name="nn_book_confirm" value="{$txt.MODULE_PAYMENT_NOVALNET_CONFIRM_TEXT|html_entity_decode}" style="float:left" onclick="return zero_amount_validation();"  >
+                        <a class="button" style="float:left" href="{$orders_link}">{$txt.MODULE_PAYMENT_NOVALNET_BACK_TEXT}</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+{/block}

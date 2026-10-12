@@ -1,0 +1,145 @@
+#nn_refund,
+.novalnet-test-mode {
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+}
+
+.novalnet-test-mode {
+    position: relative;
+    background-color: #0080c9;
+    padding: 10px 20px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 0.8px;
+    border-radius: 5px 5px 5px 5px;
+    transition: transform 0.5s 0.5s;
+    animation: 2s cubic-bezier(0.42, 0, 0.65, 0.99) infinite novalnet-test-mode-blinker;
+    float: right;
+}
+
+.novalnet-info-box {
+    position: relative;
+    height: auto;
+    background: content-box;
+    font-size: 14px;
+    color: #333;
+    margin: 20px 0;
+    padding: 1em;
+    width: 97%;
+    border-left: 5px solid #0080c9;
+    box-shadow: 0 0 8px 0 rgb(0 0 0 / 40%);
+}
+
+@keyframes novalnet-test-mode-blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+.novalnet-info-box ul {
+    margin: 0 20px;
+    padding: 0;
+}
+
+.novalnet-info-box li {
+    list-style: disc !important;
+}
+
+.novalnet-info-box li:before {
+    display: block !important;
+}
+
+#novalnet_iframe {
+    width: 100%;
+    max-height: 240px;
+}
+a::after {
+    box-sizing: border-box;
+}
+
+@media only screen and (min-width: 1024px) {
+    #novalnet_sepa_iban, #novalnet_sepa_bic, #novalnet_guarantee_sepa_iban, #novalnet_guarantee_sepa_bic, #novalnet_instalment_sepa_iban, #novalnet_instalment_sepa_bic {
+        width: 170%;
+        text-transform: uppercase;
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    #novalnet_sepa_iban, #novalnet_sepa_bic, #novalnet_guarantee_sepa_iban, #novalnet_guarantee_sepa_bic, #novalnet_instalment_sepa_iban, #novalnet_instalment_sepa_bic {
+        width: 100%;
+        text-transform: uppercase;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    #novalnet_sepa_holder, #novalnet_guarantee_sepa_holder, #novalnet_instalment_sepa_holder, #novalnet_guarantee_sepa_dob, #novalnet_instalment_sepa_dob, #novalnet_direct_debit_ach_holder, #novalnet_direct_debit_ach_account_no, #novalnet_direct_debit_ach_routing_no, #novalnet_guarantee_sepa_holder {
+        width: 170%;
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    #novalnet_sepa_holder, #novalnet_guarantee_sepa_holder, #novalnet_instalment_sepa_holder, #novalnet_guarantee_sepa_dob, #novalnet_instalment_sepa_dob, #novalnet_direct_debit_ach_holder, #novalnet_direct_debit_ach_account_no, #novalnet_direct_debit_ach_routing_no, #novalnet_guarantee_sepa_holder {
+        width: 100%;
+    }
+}
+
+.novalnet_save_card {
+    margin-top: -10px;
+}
+
+table.novalnetinstalment-table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid;
+    border-color: #bcc1c7;
+    text-align: center;
+}
+
+table.novalnetinstalment-table th {
+  text-align: center;
+  background-color: #f2f2f2;
+}
+
+table.novalnetinstalment-table td, table.novalnetinstalment-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+div[class^="novalnet_instalment_sepa_summary"], div[class^="novalnet_instalment_invoice_summary"] {
+    margin-top: 0.5rem;
+}
+
+#novalnet_instalment_sepa_cycles, #novalnet_instalment_invoice_cycles {
+    margin-top: -10px;
+}
+
+.novalnet_cc img,.novalnet_online_bank_transfer img{
+    max-width:60% !important;
+    height:25px !important 
+}
+
+@media (max-width: 767px) {
+    #novalnet_iframe {
+        width: 100%;
+    }
+    .novalnet_save_card,
+    .novalnet_instalment_text {
+        white-space: pre-wrap;
+    }
+    .checkout-payment-form {
+        max-width: 340px;
+    }
+}
+@media (max-width: 399px) {
+    .checkout-payment-form {
+        max-width: 315px;
+    }
+}
+@media (max-width: 996px) {
+    .gm_class_input {
+        width: 100% !important;
+    }
+}
