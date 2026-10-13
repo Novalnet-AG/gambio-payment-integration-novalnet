@@ -1,6 +1,6 @@
 *** Changelog ***
 
-= 12.4.2   - 12.10.2026 =
+= 12.4.2   - 13.10.2026 =
 * Fix      - Compatibility for Gambio version 26.05.0
 * Fix      - Improved validation and error handling in Apple Pay Express Checkout
 
